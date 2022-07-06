@@ -1,0 +1,65 @@
+
+
+@import './resets';
+@import './variable';
+
+@mixin flexName ($directional){
+    display: flex;
+    justify-content:center;
+    align-items:center;
+    text-align: left;
+    flex-direction: $directional;
+  
+    
+}
+
+        
+@mixin theme($light-theme:true){
+    @if $light-theme{
+        background-color: lighten($accented-color,100%);
+        color: darken($primary-color,100%);
+    }
+}    
+
+
+    
+
+
+body{
+    background-color: $accented-color;
+    color: $primary-color;
+   
+
+}
+.main{
+   @include flexName(column);
+    width: 80%;
+    margin: 0 auto;
+    
+
+    P {
+       
+        font-weight:map-get($font-weights , bold );
+    }
+    #{&}__paragraph1 {
+        &:hover{
+            color:pink;
+            cursor:grab;
+        }
+    }
+    #{&}__paragraph2{
+        @extend .main__paragraph1;
+
+        &:hover{
+            color: $text-color;
+        }
+    }
+    
+    
+
+                
+}
+
+.light{
+    @include theme($light-theme:false);
+}
